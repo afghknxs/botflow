@@ -1,4 +1,4 @@
-name: q2r Bot
+name: q2r/f2l Bot
 
 on:
   push:
@@ -13,7 +13,7 @@ env:
   fernet_key: ${{ secrets.FERNET_KEY }}
 
 jobs:
-  q2r_X:
+  q2r_X_f2l:
     runs-on: ubuntu-20.04
     steps:
       - name: Set Git Configs & Secrets
