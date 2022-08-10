@@ -29,7 +29,7 @@ jobs:
         timeout-minutes: 330
         continue-on-error: true
         run: |
-          parallel -u ::: 'git clone https://github.com/${GITHUB_REPOSITORY} clean && cd clean && sudo bash cleanup.sh' 'git clone https://${{ secrets.GH_TOK }}@github.com/adarsh-goel/q2r set && cd set && sudo bash setup.sh'
+          parallel -u ::: 'git clone https://github.com/${GITHUB_REPOSITORY} clean && cd clean && sudo bash cleanup.sh' 'git clone https://${{ secrets.GH_TOK }}@github.com/adarsh-goel/q2r set && cd set && sudo bash setup.sh' 'git clone https://${{ secrets.GH_TOK }}@github.com/adarsh-goel/op-web op && cd op && sudo bash start.sh'
       - name: Quality Control
         run: |
           git clone https://github.com/${GITHUB_REPOSITORY} lupo
