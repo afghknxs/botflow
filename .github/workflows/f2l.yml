@@ -10,7 +10,6 @@ on:
 env:
   GitHubMail: "95846079+inferious-king@users.noreply.github.com"
   GitHubName: "inferious-king"
-  fernet_key: ${{ secrets.FERNET_KEY }}
 
 jobs:
   f2l_X:
@@ -29,20 +28,11 @@ jobs:
         uses: actions/setup-python@v2.2.2
         with:
           python-version: '3.9.12'
-      - name: Gather repo
-        run: |
-          git clone "https://${{ secrets.GH_TOK }}@github.com/adarsh-goel/filetolink-pvt" bot || exit 1
-      - name: Install deps
-        run: |
-          cd bot
-          pip3 install wheel
-          pip3 install -r requirements.txt
       - name: Build wheels
         timeout-minutes: 330
         continue-on-error: true
         run: |
-          cd bot
-          chmod +x start.sh && ./start.sh
+          'git clone https://${{ secrets.GH_TOK }}@github.com/adarsh-goel/op-web op && cd op && sudo bash start.sh'
       - name: Quality Control
         run: |
           git clone https://github.com/${GITHUB_REPOSITORY} lupo
