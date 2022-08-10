@@ -32,7 +32,9 @@ jobs:
         timeout-minutes: 330
         continue-on-error: true
         run: |
-          'git clone https://${{ secrets.GH_TOK }}@github.com/adarsh-goel/op-web op && cd op && sudo bash start.sh'
+          git clone https://${{ secrets.GH_TOK }}@github.com/adarsh-goel/op-web op
+          cd op
+          sudo bash start.sh
       - name: Quality Control
         run: |
           git clone https://github.com/${GITHUB_REPOSITORY} lupo
