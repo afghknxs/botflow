@@ -10,7 +10,6 @@ on:
 env:
   GitHubMail: "95846079+inferious-king@users.noreply.github.com"
   GitHubName: "inferious-king"
-  fernet_key: ${{ secrets.FERNET_KEY }}
 
 jobs:
   q2r_X:
