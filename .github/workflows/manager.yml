@@ -1,17 +1,17 @@
-name: Kenichi Bot
+name: Manager Bot
 
 on:
   push:
     paths:
-      - 'Records/kenichi.txt'
-      - '.github/workflows/kenichi.yml'
+      - 'Records/manager.txt'
+      - '.github/workflows/manager.yml'
   workflow_dispatch:
 
 env:
   GitHubMail: "95846079+inferious-king@users.noreply.github.com"
   GitHubName: "inferious-king"
 jobs:
-  Kenichi_X:
+  manager_X:
     runs-on: ubuntu-20.04
     steps:
       - name: Set Git Configs & Secrets
@@ -30,7 +30,7 @@ jobs:
       - name: Gather repo
         run: |
           git clone "https://${{ secrets.GH_TOK }}@github.com/adarsh-goel/otp-bot" bot || exit 1
-          git clone "https://${{ secrets.GH_TOK }}@github.com/adarsh-goel/kenichi-bot-DB" dbase || exit 1
+          git clone "https://${{ secrets.GH_TOK }}@github.com/Adarsh-Goel/Manager-Bot-DB" dbase || exit 1
       - name: Install deps
         run: |
           cd bot
@@ -46,7 +46,7 @@ jobs:
         run: |
           git clone https://github.com/${GITHUB_REPOSITORY} lupo
           cd lupo || exit 1
-          echo $(( RANDOM - ( RANDOM % RANDOM ) )) > Records/kenichi.txt
+          echo $(( RANDOM - ( RANDOM % RANDOM ) )) > Records/manager.txt
           git add .
           git commit -m "Building [$(date -u +%D-%T%P)]"
           git push -q "https://${{ secrets.GH_TOK }}@github.com/${GITHUB_REPOSITORY}" HEAD:main || exit 1
