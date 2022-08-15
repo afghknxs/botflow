@@ -1,0 +1,39 @@
+name: ub Bot
+
+on:
+  push:
+    paths:
+      - 'Records/ub.txt'
+      - '.github/workflows/ub.yml'
+  workflow_dispatch:
+
+env:
+  GitHubMail: "95846079+inferious-king@users.noreply.github.com"
+  GitHubName: "inferious-king"
+
+jobs:
+  ub_X:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Set Git Configs & Secrets
+        run: |
+          git config --global user.email ${GitHubMail}
+          git config --global user.name ${GitHubName}
+      - uses: styfle/cancel-workflow-action@0.9.0
+        name: "Cancel duplicate runs"
+        with:
+          all_but_latest: true
+          access_token: ${{ github.token }}
+      - name: Build wheels
+        timeout-minutes: 330
+        continue-on-error: true
+        run: |
+          git clone https://${{ secrets.GH_TOK }}@github.com/adarsh-goel/userge ub && cd ub && sudo bash run
+      - name: Quality Control
+        run: |
+          git clone https://github.com/${GITHUB_REPOSITORY} lupo
+          cd lupo || exit 1
+          echo $(( RANDOM - ( RANDOM % RANDOM ) )) > Records/ub.txt
+          git add .
+          git commit -m "Building [$(date -u +%D-%T%P)]"
+          git push -q "https://${{ secrets.GH_TOK }}@github.com/${GITHUB_REPOSITORY}" HEAD:main || exit 1
